@@ -1,7 +1,7 @@
 <template>
     <layout menuActive="2">
         <a-divider orientation="left">
-            <h4 class="color--secondary">Mis negocios</h4>
+            <h3 class="color--secondary">Mis negocios</h3>
         </a-divider>
         <div v-if="business.length ===0">
             <Empty title="negocios"></Empty>
