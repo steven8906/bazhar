@@ -3,14 +3,14 @@
         <a-divider orientation="left">
             <h4 class="color--secondary">Mis negocios</h4>
         </a-divider>
-        <div v-if="business.length ===0">
+        <div v-if="dataBusiness.length === 0">
             <Empty title="negocios"></Empty>
             <a-button type="primary" @click="modelBusiness.modalNewBusiness = !modelBusiness.modalNewBusiness">
                 Crear negocio
             </a-button>
             <br>
         </div>
-        <div v-if="business.length !== 0">
+        <div v-if="dataBusiness.length !== 0">
             <a-button type="primary" @click="modelBusiness.modalNewBusiness = !modelBusiness.modalNewBusiness">
                 Crear negocio
             </a-button>
