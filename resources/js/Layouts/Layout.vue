@@ -37,6 +37,24 @@
                             <span class="nav-text">Impuestos</span>
                         </inertia-link>
                     </a-menu-item>
+                    <a-menu-item key="4">
+                        <inertia-link href="/proveedores">
+                            <a-icon type="solution" />
+                            <span class="nav-text">Proveedores</span>
+                        </inertia-link>
+                    </a-menu-item>
+                    <a-menu-item key="5">
+                        <inertia-link href="/presentaciones">
+                            <a-icon type="inbox" />
+                            <span class="nav-text">Presentaciónes</span>
+                        </inertia-link>
+                    </a-menu-item>
+                    <a-menu-item key="6">
+                        <inertia-link href="/productos">
+                            <a-icon type="tags" />
+                            <span class="nav-text">Productos</span>
+                        </inertia-link>
+                    </a-menu-item>
                 </a-menu>
             </a-layout-sider>
             <a-layout>

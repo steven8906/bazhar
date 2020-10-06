@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{DashboardController, BusinessController, TaxesController};
+use App\Http\Controllers\{DashboardController, BusinessController, TaxesController,
+                          ProvidersController, PresentationController,ProductController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,3 +28,6 @@ Route::get('/negocios', [BusinessController::class, 'index'])->name('negocios');
 Route::post('/negocios/nuevo', [BusinessController::class, 'save']);
 Route::post('/negocios/editar', [BusinessController::class, 'edit']);
 Route::get('/impuestos', [TaxesController::class, 'index']);
+Route::get('/proveedores',[ProvidersController::class, 'index']);
+Route::get('/presentaciones',[PresentationController::class,'index']);
+Route::get('/productos',[ProductController::class,'index']);

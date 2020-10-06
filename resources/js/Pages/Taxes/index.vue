@@ -22,7 +22,7 @@
                             <a-input v-model="modelTaxes.name" />
                         </a-form-model-item>
                         <a-form-model-item label="Descripción del impuesto">
-                            <a-input v-model="modelTaxes.description" />
+                            <a-textarea placeholder="Descripción" v-model="modelTaxes.description" />
                         </a-form-model-item>
                         <a-form-model-item label="Porcentaje">
                             <a-input v-model="modelTaxes.percent" />
@@ -46,7 +46,6 @@
             return{
                 listTaxes:[],
                 modelTaxes:{
-                    id:'',
                     name:'',
                     percent:0.0,
                     description:'',
