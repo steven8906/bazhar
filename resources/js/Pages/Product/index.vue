@@ -1,68 +1,108 @@
 <template>
-    <div>
-        <Layout>
-            <a-divider orientation="left">
-              <h3>Productos</h3>
-            </a-divider>
-            <br>
-            <div v-if="listProducts.length === 0">
-              <Empty title="productos"></Empty>
-              <a-button type="primary" @click="modelProducts.modalNewProduct=!modelProducts.modalNewProduct">
-                Nuevo producto 
-              </a-button>
-            </div>
-            <div v-if="listProducts.length !== 0">
-              <a-button type="primary" @click="modelProducts.modalNewProduct=!modelProducts.modalNewProduct">
-                Nuevo producto
-              </a-button>
-            </div>
-            <div>
-              <a-modal v-model="modelProducts.modalNewProduct" title="Nuevo producto" cancelText='Cancelar' @ok="handleOk">
-                <a-form-model :model="modelProducts">
-                  <a-form-model-item label="Nombre del producto">
-                    <a-input v-model="modelProducts.name" />
-                  </a-form-model-item>
-                  <a-form-model-item label="Descripción">
-                    <a-textarea v-model="modelProducts.description" />
-                  </a-form-model-item>
-                  <a-form-model-item label="Precio">
-                    <a-input v-model="modelProducts.description" />
-                  </a-form-model-item>
-                </a-form-model>
-              </a-modal>
-            </div>
-        </Layout>
-    </div>
+  <div>
+    <Layout>
+      <a-divider orientation="left">
+        <h3>Productos</h3>
+      </a-divider>
+      <br />
+      <div v-if="listProducts.length === 0">
+        <Empty title="productos"></Empty>        
+        <inertia-link href="/nuevo-producto">
+          <a-button
+            type="primary"
+          >
+            Nuevo producto
+          </a-button>
+        </inertia-link>
+      </div>
+      <div v-if="listProducts.length !== 0">        
+        <inertia-link href="/nuevo-producto">
+          <a-button
+            type="primary"
+          >
+            Nuevo producto
+          </a-button>
+        </inertia-link>
+        <br />
+        <br />
+        <a-table :columns="columns" :data-source="getProduct">
+          <a slot="name" slot-scope="text">{{ text }}</a>
+        </a-table>
+      </div>
+    </Layout>
+  </div>
 </template>
 
 <script>
-import Layout from './../../Layouts/Layout';
-import Empty from './../../Layouts/Components/Empty';
+import Layout from "./../../Layouts/Layout";
+import Empty from "./../../Layouts/Components/Empty";
+import axios from "axios";
+
 export default {
-    name:'products',
-    components:{Layout,Empty},
-    props:['products'],
-    data(){
-      return{
-        listProducts:[],
-        modelProducts:{
-          name:'',
-          id_provider:'',
-          id_tax:'',
-          description:'',
-          price:0.0,
-          modalNewProduct:false,
-        }
-
-      }
+  name: "products",
+  components: { Layout, Empty },
+  props: ["products", "providers", "taxes", "business", "presentations"],
+  data() {
+    return {
+      listProducts: [],
+      listProviders: [],
+      listBusiness: [],
+      listPresentations: [],
+      listTaxes: [], 
+      columns: [
+        {
+          title: "Nombre",
+          dataIndex: "name",
+          scopedSlots: { customRender: "name" },
+        },
+        {
+          title: "Descripción",
+          dataIndex: "description",
+          ellipsis: true,
+        },
+        {
+          title: "Precio compra",
+          dataIndex: "priceShop",
+          ellipsis: true,
+        },
+        {
+          title: "Precio venta",
+          dataIndex: "priceSell",
+          ellipsis: true,
+        },
+        {
+          title: "Moneda",
+          dataIndex: "currency",
+          ellipsis: true,
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.listProducts = this.products;
+    this.listProviders = this.providers;
+    this.listBusiness = this.business;
+    this.listPresentations = this.presentations;
+    this.listTaxes = this.taxes;
+  },
+  computed: {
+    getProduct() {
+      let products = [];
+      this.listProducts.forEach((product) => {
+        products.push({
+          key: product.id,
+          name: product.name,
+          description: product.description,
+          priceShop: product.priceShop,
+          priceSell: product.priceSell,
+          currency: product.currency,
+        });
+      });
+      return products;
     },
-    mounted() {
-       this.listProducts = this.products;
-    },
-
-}
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

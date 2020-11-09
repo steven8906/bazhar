@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Providers extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "id_business",
+        "name",
+        "type_id",
+        "identification",
+        "email",
+        "phone",
+        "address",
+    ];
 }

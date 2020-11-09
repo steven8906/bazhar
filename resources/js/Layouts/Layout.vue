@@ -46,13 +46,31 @@
                     <a-menu-item key="5">
                         <inertia-link href="/presentaciones">
                             <a-icon type="inbox" />
-                            <span class="nav-text">Presentaciónes</span>
+                            <span class="nav-text">Presentaciones</span>
                         </inertia-link>
                     </a-menu-item>
                     <a-menu-item key="6">
                         <inertia-link href="/productos">
                             <a-icon type="tags" />
                             <span class="nav-text">Productos</span>
+                        </inertia-link>
+                    </a-menu-item>
+                    <a-menu-item key="7">
+                        <inertia-link href="/medios-venta">
+                            <a-icon type="shop" />
+                            <span class="nav-text">Medios de venta</span>
+                        </inertia-link>
+                    </a-menu-item>                    
+                    <a-menu-item key="8">
+                        <inertia-link href="/utilidades">
+                            <a-icon type="fund" />
+                            <span class="nav-text">Utilidades</span>
+                        </inertia-link>
+                    </a-menu-item>
+                    <a-menu-item key="9">
+                        <inertia-link href="/pedidos">
+                            <a-icon type="reconciliation" />
+                            <span class="nav-text">Pedidos</span>
                         </inertia-link>
                     </a-menu-item>
                 </a-menu>

@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController, BusinessController, TaxesController,
-                          ProvidersController, PresentationController,ProductController};
+                          ProvidersController, PresentationController, ProductController, 
+                          SalesMediumController, UtilitiesController, OrdersController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +29,17 @@ Route::get('/negocios', [BusinessController::class, 'index'])->name('negocios');
 Route::post('/negocios/nuevo', [BusinessController::class, 'save']);
 Route::post('/negocios/editar', [BusinessController::class, 'edit']);
 Route::get('/impuestos', [TaxesController::class, 'index']);
+Route::post('/impuestos/nuevo', [TaxesController::class, 'new']);
 Route::get('/proveedores',[ProvidersController::class, 'index']);
-Route::get('/presentaciones',[PresentationController::class,'index']);
-Route::get('/productos',[ProductController::class,'index']);
+Route::post('/proveedores/nuevo', [ProvidersController::class, 'new']);
+Route::get('/presentaciones',[PresentationController::class, 'index']);
+Route::post('/presentaciones/nuevo',[PresentationController::class, 'new']);
+Route::get('/productos',[ProductController::class, 'index']);
+Route::get('/nuevo-producto',[ProductController::class,'newProduct']);
+Route::post('/productos/nuevo',[ProductController::class, 'new']);
+Route::get('/medios-venta',[SalesMediumController::class,'index']);
+Route::post('/medios-venta/nuevo',[SalesMediumController::class,'new']);
+Route::get('/utilidades',[UtilitiesController::class,'index']);
+Route::get('/pedidos',[OrdersController::class,'index']);
+
+

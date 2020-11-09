@@ -12,4 +12,11 @@ class PresentationController extends Controller
     {
         return Inertia::render('Presentation/index',['presentations'=> Presentation::all()]);
     }
+
+    public function new(Request $request)
+    {
+        $presentation = new Presentation();
+        $presentation->create($request->all());
+        return $presentation->all();
+    }
 }
