@@ -18,5 +18,6 @@ class Product extends Model
         'name_img',
         'url_img',
         'enabled',
+        'discount',
     ];
 }
