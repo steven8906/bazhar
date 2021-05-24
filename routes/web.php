@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< Updated upstream
 use App\Http\Controllers\{DashboardController, BusinessController, TaxesController};
+=======
+use App\Http\Controllers\{DashboardController, ProductController,CategoryController, CustomerController};
+>>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +18,7 @@ use App\Http\Controllers\{DashboardController, BusinessController, TaxesControll
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 /*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -23,7 +27,27 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+<<<<<<< Updated upstream
 Route::get('/negocios', [BusinessController::class, 'index'])->name('negocios');
 Route::post('/negocios/nuevo', [BusinessController::class, 'save']);
 Route::post('/negocios/editar', [BusinessController::class, 'edit']);
 Route::get('/impuestos', [TaxesController::class, 'index']);
+=======
+Route::get('/productos',[ProductController::class, 'index']);
+Route::post('/productos/registrar',[ProductController::class, 'save']);
+Route::post('/productos/actualizar',[ProductController::class, 'update']);
+Route::delete('/productos/eliminar/{id}',[ProductController::class, 'delete']);
+Route::get('/productos/todos',[ProductController::class, 'all']);
+
+Route::get('/categorias',[CategoryController::class, 'index']);
+Route::post('/categorias/registrar',[CategoryController::class, 'save']);
+Route::put('/categorias/actualizar',[CategoryController::class, 'update']);
+Route::delete('/categorias/eliminar/{id}',[CategoryController::class, 'delete']);
+
+Route::get('/clientes',[CustomerController::class,'index']);
+Route::post('/clientes/registrar',[CustomerController::class,'save']);
+Route::put('/clientes/actualizar',[CustomerController::class,'update']);
+Route::delete('/clientes/eliminar/{id}',[CustomerController::class,'delete']);
+
+
+>>>>>>> Stashed changes
