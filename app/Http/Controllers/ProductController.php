@@ -122,6 +122,6 @@ class ProductController extends Controller
     }
 
     public function all(Request $request){
-        return response()->json(array('success' => true, 'info' => Product::all()));
+        return Product::all();
     }
 }

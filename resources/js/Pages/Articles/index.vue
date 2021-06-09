@@ -84,9 +84,13 @@
                                 :src="url_image"
                             />
                         </a-list-item-meta>
-                        <a-tag color="#87d068" v-if="modelProduct.discount != null">
-                            {{modelProduct.discount}}
-                        </a-tag>
+                    </a-list-item>
+                    <a-list-item >
+                        <a-list-item-meta>
+                            <a-tag color="#87d068" v-if="modelProduct.discount > 0">
+                                {{modelProduct.discount*100+'%'}}
+                            </a-tag>
+                        </a-list-item-meta>
                     </a-list-item>
                     <a-list-item >
                         <a-list-item-meta
@@ -131,7 +135,7 @@
             <div v-for="item in dataProduct">
                 <a-col :xs="24" :lg="6">
                     <a-card hoverable style="width: 300px;margin:1rem;">
-                        <a-tag color="#87d068" v-if="item.discount != null">
+                        <a-tag color="#87d068" v-if="item.discount > 0">
                             {{item.discount*100+'%'}}
                         </a-tag>
                         <img
@@ -139,7 +143,15 @@
                             :src="item.url_img"
                         />
                         <template slot="actions" class="ant-card-actions">
-                            <a-icon key="delete" type="delete" @click="deleteModal=true" />
+                            <a-popconfirm
+                                title="¿Seguro que desea eliminar?"
+                                ok-text="Si"
+                                cancel-text="No"
+                                @confirm="deleteProduct(item.id)"
+                                @cancel="cleanModal"
+                            >
+                                <a-icon key="delete" type="delete"  />
+                            </a-popconfirm>
                             <a-icon key="edit" type="edit" @click="setFormUpdate(item.id)"/>
                             <a-icon key="profile" type="profile" @click="openModalDetails(item.id)"/>
                         </template>
@@ -147,9 +159,6 @@
                         </a-card-meta>
                     </a-card>
                     </a-col>
-                    <a-modal v-model="deleteModal" title="Confirmación" cancelText="Cancelar" @ok="deleteProduct(item.id)" @cancel="cleanModal">
-                        <a-icon type="info-circle" theme="twoTone" two-tone-color="#eb2f96" class="danger"/>&nbsp;&nbsp; Desea eliminar el producto {{item.name}}?
-                    </a-modal>
             </div>
         </a-row>
     </layout>
@@ -179,7 +188,7 @@ export default {
             price:'',
             description:'',
             stock:'',
-            discount:null,
+            discount:0,
             image:null,
             enabled:true,
         },
@@ -237,7 +246,7 @@ export default {
         },
         deleteProduct(id) {
             let data = {
-                id_product: this.modelProduct.id_product
+                id_product: id
             };
             let url = "/productos/eliminar/" + id;
             let method = "delete";
@@ -294,6 +303,11 @@ export default {
             this.url_image = product.url_img;
             this.detailModal = true;
         },
+        openModalDelete(id){
+            let product = this.dataProduct.filter((item) => item.id == id)[0];
+            this.modelProduct.id_product = id;
+            this.deleteModal = true;
+        },
         cleanModal(){
             this.modelProduct.id_product = null;
             this.modelProduct.id_category = null;
@@ -301,7 +315,7 @@ export default {
             this.modelProduct.price = '';
             this.modelProduct.description = '';
             this.modelProduct.stock = '';
-            this.modelProduct.discount = null;
+            this.modelProduct.discount = 0;
             this.modelProduct.image = null;
             this.modelProduct.enabled = true;
             this.formModal = false;
@@ -309,6 +323,7 @@ export default {
             this.deleteModal = false;
             this.err.info=null;
             this.err.status=null;
+            this.fileList = []
         },
     },
     mounted(){

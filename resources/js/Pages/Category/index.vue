@@ -30,7 +30,6 @@
                         </a-form-model-item>
 
                     </a-form-model>
-                    {{modelCategory}}
                 </a-modal>
 
                 <div v-if="loadingOnSave">
@@ -45,30 +44,23 @@
                <div v-for="item in dataCategory">
                     <a-col :xs="24" :lg="6">
                         <a-card hoverable style="width: 300px;margin:1rem;">
-                            <template slot="actions" class="ant-card-actions">
-                                <a-icon type="delete" @click="deleteModal=true" />
+                                <template slot="actions" class="ant-card-actions">
+                                    <a-popconfirm
+                                    title="¿Seguro que desea eliminar?"
+                                    ok-text="Si"
+                                    cancel-text="No"
+                                    @confirm="deleteCategory(item.id)"
+                                    @cancel="cleanModal"
+                                >
+                                    <a-icon type="delete"/>
+                                </a-popconfirm>
                                 <a-icon type="edit" @click="setFormUpdate(item.id)"/>
                             </template>
                             <a-card-meta :title="item.name" :description="item.description">
                             </a-card-meta>
                         </a-card>
                     </a-col>
-                    <a-modal v-model="deleteModal" title="Confirmación" cancelText="Cancelar" @ok="deleteCategory(item.id)" @cancel="cleanModal">
-                        <a-icon type="info-circle" theme="twoTone" two-tone-color="#eb2f96" class="danger"/>&nbsp;&nbsp; Desea eliminar la categoria {{item.name}}?
-                    </a-modal>
                 </div>
-<!--                <a-table :columns="columns" :data-source="dataCategory">
-                    <a slot="name" slot-scope="name">{{ name }}</a>
-                    <span slot="description" slot-scope="description">{{description}}</span>
-                    <span slot="action" slot-scope="text, record">
-                        <a-icon type="delete" @click="deleteModal=true" />
-                        <a-divider type="vertical" />
-                        <a-icon type="edit" @click="setFormUpdate(record.id)"/>
-                        <a-modal v-model="deleteModal" title="Confirmación" cancelText="Cancelar" @ok="deleteCategory(record.id)" @cancel="cleanModal">
-                            <a-icon type="info-circle" theme="twoTone" two-tone-color="#eb2f96" class="danger"/>&nbsp;&nbsp; Desea eliminar la categoria {{record.name}}?
-                        </a-modal>
-                    </span>
-                </a-table>-->
             </a-row>
         </layout>
     </template>

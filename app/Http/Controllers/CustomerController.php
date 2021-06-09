@@ -127,4 +127,16 @@ class CustomerController extends Controller
             return response()->json( ['success' => false, 'info' => $ex->getMessage()], 400);
         }
     }
+
+    function all(){
+        return Customer::all();
+    }
+
+    function login($user,$pass){
+        return Customer::select('*')
+                    ->where(['username'=>$user,'password'=>$pass])
+                    ->first();
+    }
+
+
 }

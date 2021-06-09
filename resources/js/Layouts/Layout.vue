@@ -37,27 +37,24 @@
                             <span class="nav-text">Categorías</span>
                         </inertia-link>
                     </a-menu-item>
-<<<<<<< Updated upstream
-=======
                     <a-menu-item key="4">
                         <inertia-link href="/ventas">
                             <a-icon type="read" />
                             <span class="nav-text">Ventas</span>
                         </inertia-link>
                     </a-menu-item>
-                    <a-menu-item key="5">
+<!--                    <a-menu-item key="5">
                         <inertia-link href="/usuarios">
                             <a-icon type="user" />
                             <span class="nav-text">Usuarios</span>
                         </inertia-link>
-                    </a-menu-item>
+                    </a-menu-item>-->
                     <a-menu-item key="6">
                         <inertia-link href="/clientes">
                             <a-icon type="team" />
                             <span class="nav-text">Clientes</span>
                         </inertia-link>
                     </a-menu-item>
->>>>>>> Stashed changes
                 </a-menu>
             </a-layout-sider>
             <a-layout>

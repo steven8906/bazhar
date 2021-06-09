@@ -30,7 +30,6 @@ Route::get('/productos',[ProductController::class, 'index']);
 Route::post('/productos/registrar',[ProductController::class, 'save']);
 Route::post('/productos/actualizar',[ProductController::class, 'update']);
 Route::delete('/productos/eliminar/{id}',[ProductController::class, 'delete']);
-Route::get('/productos/todos',[ProductController::class, 'all']);
 
 Route::get('/categorias',[CategoryController::class, 'index']);
 Route::post('/categorias/registrar',[CategoryController::class, 'save']);
@@ -41,5 +40,9 @@ Route::get('/clientes',[CustomerController::class,'index']);
 Route::post('/clientes/registrar',[CustomerController::class,'save']);
 Route::put('/clientes/actualizar',[CustomerController::class,'update']);
 Route::delete('/clientes/eliminar/{id}',[CustomerController::class,'delete']);
+
+Route::get('/ventas',[\App\Http\Controllers\SalesController::class,'index']);
+
+
 
 

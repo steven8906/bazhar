@@ -22,7 +22,14 @@
                     <span slot="username" slot-scope="username">{{ username }}</span>
                     <span slot="email" slot-scope="email">{{email}}</span>
                     <span slot="action" slot-scope="text, record">
-                    <a-icon type="delete" @click="deleteModal=true" />
+                        <a-popconfirm
+                            title="¿Seguro que desea eliminar?"
+                            ok-text="Si"
+                            cancel-text="No"
+                            @confirm="deleteCustomer(item.id)"
+                            @cancel="cleanModal">
+                            <a-icon type="delete"/>
+                        </a-popconfirm>
                     <a-divider type="vertical" />
                     <a-icon type="edit" @click="setFormUpdate(record.id)"/>
                     <a-divider type="vertical" />
